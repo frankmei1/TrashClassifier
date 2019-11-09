@@ -11,7 +11,7 @@ model.batch_size = 1
 transforms = transforms.compose([transforms.resize(224),
                                        transforms.totensor(),])
 
-image = image.open(path(sys.argv[1]))
+image = image.open('temp.jpg')
 
 inp = transforms(image)
 
