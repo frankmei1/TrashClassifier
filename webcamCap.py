@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Nov  9 16:09:12 2019
-
 @author: Andrew 闫泽锋
 """
 
@@ -34,9 +33,8 @@ def main():
     for i in range(15):
         time.sleep(5)
         x=getIm()
-        im = Image.open('temp.jpg')
         
-        im.show()
+        exec(open("evaluator.py").read());
 #    Image.open("temp.jpg")
     
 if __name__== "__main__":
