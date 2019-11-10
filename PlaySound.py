@@ -2,17 +2,21 @@
 """
 Created on Sat Nov  9 16:28:11 2019
 
-@author: Andrew 
+@author: Andrew
 """
 from gtts import gTTS
 import os
-def main():
-    t = 'Shalom is so fattttt'
+def playSound(str):
+    #get file
+
+    if str == "trash":
+        t = 'Throw that away!!!!'
+    else:
+        t = 'Stop! recycle that please'
     language = 'en'
     myobj= gTTS(text=t, lang=language, slow=False)
 
     myobj.save("audiotemp.mp3")
     os.system("audiotemp.mp3")
 
-if __name__== "__main__":
-    main()
+playSound("paper")
