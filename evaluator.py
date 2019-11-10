@@ -1,38 +1,47 @@
 import torch
 from torchvision import transforms, datasets, models
-from pil import image
-from pathlib import path
+from PIL import Image
+from pathlib import Path
 import sys
+import os
+from gtts import gTTS
+import mpg123
+from torch.autograd import Variable
 
 model = torch.load("wastemodel.pt")
 
-model.batch_size = 1
+loader = transforms.Compose([transforms.Resize(224), transforms.ToTensor()])
 
-transforms = transforms.compose([transforms.resize(224),
-                                       transforms.totensor(),])
+image = Image.open(Path("temp.jpg"))
 
-image = image.open('temp.jpg')
+image = loader(image).float()
 
-inp = transforms(image)
+image = Variable(image, requires_grad=True)
 
-inp = inp.to(torch.device("cpu"))
+image = image.unsqueeze(0)
 
-inp = inp[none]
+output = model(image)
 
-output = model(inp)
-
-prediction = int(torch.max(output.data, 1)[1].numpy())
+print(output)
+prediction = (int)(torch.max(output.data, 1)[1].numpy())
 print(prediction)
 
 if (prediction == 0):
-    print ('cardboard')
+    t ("Recycle that cardboard please!")
 if (prediction == 1):
-    print ('glass')
+    t = "Recycle that glass please!"
 if (prediction == 2):
-    print ('metal')
+    t = "Recycle that metal please!"
 if (prediction == 3):
-    print ('paper')
+    t = ("Recycle that paper please!")
 if (prediction == 4):
-    print('plastic')
+    t = ("Recycle that plastic please")
 if (prediction ==5):
-    print('trash')
+    t = "Throw that away!"
+
+myobj = gTTS(text=t,lang='en',slow=False)
+
+myobj.save("audiotemp.mp3")
+os.system("mpg123 audiotemp.mp3")
+
+os.remove("temp.jpg")
