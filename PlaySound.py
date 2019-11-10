@@ -19,4 +19,4 @@ def playSound(str):
     myobj.save("audiotemp.mp3")
     os.system("audiotemp.mp3")
 
-playSound("paper")
+playSound("trash")
